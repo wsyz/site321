@@ -1,0 +1,645 @@
+@charset "UTF-8";
+/*
+ * config:  style of directory
+ * author:  ceci
+ */
+
+// reset
+ *, *:before, *:after {
+ 	box-sizing:border-box;
+ }
+ body, h1, h2, h3, h4, h5, h6, p, dl, dd, ul, ol, pre, blockquote, textarea, input, button, hr, figure { 
+ 	margin:0; 
+ }
+ ul, ol, th, td, button, textarea, input { 
+ 	padding:0; 
+ }
+ ul, ol { 
+ 	list-style: none; 
+ }
+ h1, h2, h3, h4, h5, h6 { 
+ 	font-size: 100%; 
+ 	font-weight: normal; 
+ }
+ em, i {
+ 	font-style: normal;
+ }
+ img { 
+ 	vertical-align: top; 
+ 	border: none; 
+ }
+ sub,
+ sup {
+   	font-size: 75%;
+   	line-height: 0;
+   	position: relative;
+   	vertical-align: baseline;
+ }
+ sup {
+   	top: -0.5em;
+ }
+
+ sub {
+   bottom: -0.25em;
+ }
+ svg:not(:root) {
+   	overflow: hidden;
+ }
+ table { 
+ 	border-collapse: collapse; 
+ 	border-spacing: 0; 
+ }
+ input, select { 
+ 	border: none;
+ 	vertical-align: middle; 
+ 	outline: none;
+ }
+ textarea { 
+ 	resize: vertical; 
+ 	border: none;
+ 	outline: none;
+ 	box-shadow: none;
+ }
+ html, body {
+ 	min-width: 0 !important;
+    height: 100%;
+ }
+ a, a:hover, a:active {
+ 	outline: 0;
+ 	text-decoration: none;
+ 	background-color: transparent;
+ }
+ input, textarea, select {       
+ 	font: 14px/1.8 'Microsoft YaHei', 'SimSun', Arial, Helvetica;
+ }  
+ body { 
+ 	min-width: 0;
+ 	font: 14px/1.8 'Microsoft YaHei', 'SimSun', Arial, Helvetica;
+ 	color: #333;
+ }
+ a { 
+ 	color: inherit; 
+ }
+ a:hover { 
+ 	color: inherit;
+ }
+
+
+/* 布局 */
+$sidemenu: #373d47;
+.ceci-wrapper-pc {
+	height: 100%;
+	overflow: hidden;
+	background: $sidemenu;
+	.ceci-sideby {
+		position: relative;
+		float: left;
+		width: 200px;
+		height: 100%;
+		padding-top: 70px;
+		z-index: 100;
+		//收起按钮
+		.ceci-btnside {
+			position: absolute;
+			right: -10px;
+			top: 50%;
+			width: 15px;
+			height: 50px;
+			margin-top: -25px;
+			background: #ddd;
+			border-radius: 5px;
+		}
+		&.ceci-close {
+			width: 0;
+		}
+	}
+	.ceci-mainby {
+		height: 100%;
+		overflow: hidden;
+		background: #fff;
+		.ceci-pagecon {
+			display: none;
+			height: 100%;
+			&.on {
+				display: block;
+			}
+			iframe {
+				width: 100%;
+				height: 100%;
+				padding: 0;
+				border: none;
+			}
+		}
+	}
+	/* 左侧导航 */
+	.ceci-mainmenu {
+		max-height: 100%;
+		overflow-y: auto;
+		overflow-x: hidden;
+		//通用
+		li {
+			.ceci-item {
+				position: relative;
+				display: block;
+				height: 40px;
+				line-height: 40px;
+				padding: 0 16px;
+				font-size: 14px;
+				color: rgba(255,255,255,.6);
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				&:before {
+					position: absolute;
+					top: 50%;
+					right: 15px;
+					width: 0;
+					height: 0;
+					border: 5px solid transparent;
+					border-top-color: #ddd;
+					content: "";
+					margin-top: -5px;
+				}
+				&[data-href] {
+					&:before {
+						border-top-color: transparent;
+					}
+				}
+			}
+			ul {
+				padding-left: 20px;
+				display: none;
+			}
+		}
+		> li {
+			> .ceci-item {
+				&:hover {
+					background: darken($sidemenu,5%);
+					transition: background-color 0.3s ease-out;
+				}
+			}
+			> ul {
+				background: darken($sidemenu,3%);
+			}
+		}
+		//webkit美化滚动条
+		&::-webkit-scrollbar {
+			width: 6px;
+			height: 6px;
+		}
+		&::-webkit-scrollbar-thumb {
+			border-radius: 3px;
+			background: #999;
+		}
+		&::-webkit-scrollbar-track {
+			background: #dbdbdb;
+		}
+		&::-ms-clear,
+		&::-ms-reveal {
+			display: none;
+		}
+	}
+
+
+	.ceci-pjintro-subtit {
+		margin: 20px 0;
+		line-height: 18px;
+		padding-left: 6px;
+		font-size: 16px;
+		color: #333;
+		border-left: 3px solid #7fd6e2;
+	}
+
+	//通用表格样式
+	.ceci-table {
+		width: 80%;
+		margin-bottom: 30px;
+		background-color: #d8f2f6;
+		.table-head {
+			background-color: #7fd6e2;
+			font-size: 14px;
+			color: #333;
+		}
+		.item {
+			display: block;
+			height: 36px;
+			border-bottom: 1px solid #fff;
+			text-align: center;
+			text-align: left;
+		}
+		a.item {
+			&:hover {
+				background-color: #c5eaef;
+				color: #01adc5;
+			}
+		}
+		.col {
+			display: inline-block;
+			float: left;
+			line-height: 36px;
+			padding: 0 15px;
+			border-right: 1px solid #fff;
+		}
+		.col-1 {
+			width: 10%;
+		}
+		.col-2 {
+			width: 20%;
+		}
+		.col-3 {
+			width: 30%;
+		}
+		.col-4 {
+			width: 40%;
+		}
+		.col-5 {
+			width: 50%;
+		}
+		.col-6 {
+			width: 60%;
+		}
+		.col-7 {
+			width: 70%;
+		}
+		.col-8 {
+			width: 80%;
+		}
+		.col-9 {
+			width: 90%;
+		}
+		.col-10 {
+			width: 100%;
+		}
+	}
+
+	// 项目简介
+	.ceci-pagecon[data-target="pj-intro"] {
+	 	padding: 50px 30px;
+		.ceci-formtit {
+			font-size: 16px;
+			color: #333;
+			margin-right: 10px;
+		}
+		.ceci-pjtxt {
+			font-size: 16px;
+			color: #666;
+		}
+	}
+
+	//页面链接
+	.ceci-pagecon[data-target="pj-linkpage"],
+	.ceci-pagecon[data-target="pj-intro"] {
+		padding: 20px 40px;
+	}
+
+	// sass变量
+	.ceci-pagecon[data-target="pj-var"],
+	.ceci-pagecon[data-target="pj-mixin"] {
+	 	padding: 30px;
+	 	.ceci-pjvar-tit {
+	 		margin-bottom: 20px;
+	 		font-size: 26px;
+	 		color: #333;
+	 		text-align: center;
+	 	}
+	 	.ceci-pjvar-subtit {
+	 		margin: 10px 0;
+	 		font-size: 18px;
+	 		color: #333;
+	 		font-weight: bold;
+	 	}
+	 	.ceci-formrow {
+	 		margin-bottom: 10px;
+	 		.ceci-formtit {
+	 			display: inline-block;
+	 			vertical-align: middle;
+	 			width: 200px;
+	 			margin-right: 10px;
+	 			font-size: 14px;
+	 			color: #666;
+	 			text-align: right;
+	 		}
+	 		.ceci-forminp {
+	 			border: 1px solid #ddd;
+	 		}
+	 	}
+	}
+	.ceci-pagecon[data-target="pj-mixin"] {
+		.ceci-forminp {
+			width: 400px;
+		}
+	}
+
+
+	//组件
+	.ceci-mainby {
+	}
+}
+
+//通用标题
+.ceci-pjintro-tit {
+	padding: 10px 0;
+	font-size: 30px;
+	color: #333;
+	text-align: center;
+	font-weight: bold;
+}
+
+.ceci-pagecon {
+	background: #f5f5f5;
+	overflow: auto;
+	.ceci-textarea {
+		height: 100%;
+		resize: none;
+	}
+	.ceci-components-display {
+		background: #fff;
+	}
+	.ceci-components-tit {
+		margin: 20px 0 10px;
+		font-size: 18px;
+		text-align: center;
+		font-weight: bold;
+		color: #6b9c2c;
+	}
+	//展现方式：两列
+	&[data-style="col"] {
+		.ceci-components {
+			height: 200px;
+			margin: 20px 20px 0;
+		}
+		.ceci-components-edit {
+			float: left;
+			height: 100%;
+			margin-right: 2px;
+			width: 40%;
+			.ceci-textarea {
+				width: 100%;
+				// border: 1px solid #ddd;
+			}
+		}
+		.ceci-components-display {
+			overflow: hidden;
+			min-height: 100%;
+			padding: 15px;
+			// border: 1px solid #ddd;
+			border-left: none;
+		}
+	}
+
+	//展现方式：两行
+	&[data-style="row"] {
+		// background: #fff;
+		.ceci-components {
+			margin-bottom: 40px;
+			margin-right: 20px;
+		}
+		.ceci-components-edit {
+			height: 200px;
+			margin-bottom: 10px;
+			.ceci-textarea {
+				background: #ddd;
+				width: 100%;
+				resize: none;
+				overflow: auto;
+			}
+		}
+	}
+}
+//弹窗
+.ceci-components-display {
+	.ui-pop,
+	.popwrap {
+		display: block !important;
+		position: relative !important;
+		margin-top: 0 !important;
+		top: 0 !important;
+		left: 0 !important;
+		margin-left: 0 !important;
+		transform: translate(0) !important;
+	}
+	.ui-pop {
+		padding: 10px;
+	}
+}
+
+
+.ceci-wrapper-mobile {
+	$sidemenu-m: rgba(0,0,0,0.8);
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+	a {
+		-webkit-tap-highlight-color: transparent;
+	}
+	.ceci-sideby {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 30%;
+		width: 70%;
+		background-color: rgba(0,0,0,0.8);
+		transition: transform 0.3s ease-out;
+		transform: translateX(0);
+		z-index: 999;
+		.ceci-btnside {
+			position: absolute;
+			top: 50%;
+			left: -35px;
+			width: 35px;
+			height: 70px;
+			margin-top: -35px;
+			border-top-left-radius: 50%;
+			border-bottom-left-radius: 50%;
+			background-color: rgba(0,0,0,0.7);
+			outline: none;
+			&:active {
+				background-color: rgba(0,0,0,0.9);
+			}
+		}
+		&.ceci-close {
+			transform: translateX(100%);
+		}
+		.ceci-mainmenu {
+			height: 100%;
+			overflow: auto;
+			//通用
+			li {
+				.ceci-item {
+					position: relative;
+					display: block;
+					height: 50px;
+					line-height: 50px;
+					padding: 0 16px;
+					font-size: 14px;
+					color: rgba(255,255,255,.6);
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					border-bottom: 1px solid rgba(255,255,255,0.05);
+					&:before {
+						border-top-color: transparent;
+					}
+					&.ceci-item-slider:before {
+						position: absolute;
+						top: 50%;
+						right: 15px;
+						width: 0;
+						height: 0;
+						border: 5px solid transparent;
+						border-top-color: #fff;
+						content: "";
+						margin-top: -5px;
+					}
+					&.open {
+						background-color: rgba(0,0,0,0.4);
+					}
+				}
+				ul {
+					padding-left: 20px;
+					display: none;
+				}
+			}
+			> li {
+				> .ceci-item {
+					&:active {
+						background: darken($sidemenu-m,5%);
+						transition: background-color 0.3s ease-out;
+					}
+				}
+				> ul {
+					background: darken($sidemenu-m,1%);
+				}
+			}
+		}
+	}
+	.ceci-mainby {
+		height: 100%;
+		.ceci-pagecon {
+			display: none;
+			height: 100%;
+			overflow-y: auto;
+			overflow-x: hidden;
+			&.on {
+				display: block;
+			}
+			&[data-target="pj-intro"],
+			&[data-target="pj-linkpage"] {
+				padding: 10px;
+			}
+		}
+		.ceci-pjintro-tit {
+			margin: 10px 0 20px;
+			font-size: 20px;
+			color: #333;
+			text-align: center;
+			font-weight: bold;
+		}
+		.ceci-pjintro-subtit {
+			margin: 10px 0;
+			font-size: 16px;
+			color: #333;
+			font-weight: bold;
+		}
+		.ceci-formrow {
+			margin-bottom: 6px;
+			.ceci-formtit {
+				color: #999;
+			}
+		}
+		.ceci-components-tit,
+		.ceci-pjvar-tit {
+			margin: 10px;
+			font-size: 16px;
+			color: #333;
+			font-weight: bold;
+		}
+		.ceci-components-edit {
+			margin: 10px;
+			border: 1px solid #ddd;
+			.ceci-textarea {
+				min-height: 100px;
+				width: 100%;
+			}
+		}
+		.ceci-forminp {
+			border: 1px solid #ddd;
+		}
+		//通用表格样式
+		.ceci-table {
+			width: 100%;
+			margin-bottom: 30px;
+			background-color: #d8f2f6;
+			.table-head {
+				background-color: #7fd6e2;
+				font-size: 14px;
+				color: #333;
+			}
+			.item {
+				display: block;
+				height: 36px;
+				border-bottom: 1px solid #fff;
+				text-align: center;
+			}
+			a.item {
+				&:hover {
+					background-color: #c5eaef;
+					color: #01adc5;
+				}
+			}
+			.col {
+				display: inline-block;
+				float: left;
+				line-height: 36px;
+				padding: 0 15px;
+				border-right: 1px solid #fff;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.col-1 {
+				width: 10%;
+			}
+			.col-2 {
+				width: 20%;
+			}
+			.col-3 {
+				width: 30%;
+			}
+			.col-4 {
+				width: 40%;
+			}
+			.col-5 {
+				width: 50%;
+			}
+			.col-6 {
+				width: 60%;
+			}
+			.col-7 {
+				width: 70%;
+			}
+			.col-8 {
+				width: 80%;
+			}
+			.col-9 {
+				width: 90%;
+			}
+			.col-10 {
+				width: 100%;
+			}
+		}
+	}
+}
+.ceci-btn-components-link {
+	font-size: 14px;
+	color: #6b9c2c;
+	text-decoration: underline;
+	&:hover {
+		color: lighten(#6b9c2c,10%);
+		text-decoration: underline;
+	}
+	&:active {
+		color: darken(#6b9c2c,5%);
+		text-decoration: underline;
+	}
+}
